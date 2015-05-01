@@ -7,10 +7,15 @@
 //
 
 #import "ViewController.h"
+#import "FavoriteThingsTableViewDataSource.h"
+
+
+static NSString *cellID = @"cellID";
 
 @interface ViewController ()
 
 @property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) FavoriteThingsTableViewDataSource *dataSource;
 
 @end
 
@@ -20,6 +25,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.tableView = [[UITableView alloc]initWithFrame:self.view.frame];
+    
+    self.dataSource = [FavoriteThingsTableViewDataSource new];
+    [self.dataSource registerTableView:self.tableView];
+    self.tableView.dataSource = self.dataSource;
     [self.view addSubview:self.tableView];
     
 }
